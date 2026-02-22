@@ -1,155 +1,66 @@
 <!DOCTYPE html>
 <html lang="pl">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kingusia LED Studio — Projektuj oświetlenie</title>
-    <meta name="description"
-        content="Studio projektowania oświetlenia LED z podziałem na pomieszczenia i AI asystentem Ollama." />
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💡</text></svg>" />
-    <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-
-    <header id="app-header">
-        <a class="logo-wrap" href="#">
-            <div class="logo-icon">💡</div>
-            <span class="logo-text">KINGUSIA <span>LED</span> STUDIO</span>
-        </a>
-        <div class="header-divider"></div>
-        <div class="header-status">
-            <div class="status-dot" id="status-dot"></div>
-            <span id="status-label">Sprawdzam Ollama…</span>
-        </div>
-        <button class="header-btn" id="add-room-header-btn">➕ Dodaj pomieszczenie</button>
-        <button class="header-btn" id="export-btn">📄 Eksport wyceny</button>
-    </header>
-
-    <aside id="sidebar">
-        <div class="sidebar-head">
-            <span class="sidebar-title">🏠 Pomieszczenia</span>
-            <button id="add-room-btn" title="Dodaj pomieszczenie">+</button>
-        </div>
-        <div id="rooms-list"></div>
-        <div class="sidebar-footer">
-            <div class="sidebar-total">
-                <span>Szacunkowy koszt:</span>
-                <strong id="sidebar-total">0,00 zł</strong>
-            </div>
-        </div>
-    </aside>
-
-    <main id="main">
-        <div class="main-scroll" id="main-content"></div>
-        <div class="summary-bar">
-            <div class="summary-item"><span class="s-label">Pomieszczeń</span><span class="s-val"
-                    id="sum-rooms">0</span></div>
-            <div class="summary-divider"></div>
-            <div class="summary-item"><span class="s-label">Łączna długość</span><span class="s-val" id="sum-length">0
-                    m</span></div>
-            <div class="summary-divider"></div>
-            <div class="summary-item"><span class="s-label">Łączna moc</span><span class="s-val" id="sum-power">0
-                    W</span></div>
-            <div class="summary-divider"></div>
-            <div class="summary-item"><span class="s-label">Koszt całkowity</span><span class="s-val" id="sum-cost"
-                    style="color:var(--orange)">0 zł</span></div>
-        </div>
-    </main>
-
-    <aside id="chat-panel">
-        <div class="chat-head">
-            <div class="chat-avatar">✨</div>
-            <div class="chat-title-wrap">
-                <div class="chat-name">Kingusia AI</div>
-                <div class="chat-subtitle">Doradca oświetlenia LED</div>
-            </div>
-            <div class="chat-model-badge" id="model-badge">ładowanie…</div>
-        </div>
-
-        <!-- CORS/Offline banner -->
-        <div id="ollama-offline-banner">
-            <div style="font-size:12px;color:var(--danger);font-weight:600">⚠️ Ollama offline lub brak CORS</div>
-            <div class="cors-fix-box">
-                <strong>Uruchom Ollama z obsługą CORS:</strong>
-                <code id="cors-cmd"
-                    title="Kliknij aby skopiować">OLLAMA_ORIGINS="https://bohunek5.github.io" ollama serve</code>
-                <div style="display:flex;gap:6px;margin-top:8px;align-items:center">
-                    <span style="font-size:10px;color:var(--text-3);white-space:nowrap">URL Ollamy:</span>
-                    <input id="ollama-url-input" type="text" class="ollama-url-input" value="http://localhost:11434" />
-                    <button id="ollama-url-save" class="ollama-url-save">Zapisz ↺</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="chat-messages">
-            <div class="chat-msg ai">
-                <div class="msg-avatar">✨</div>
-                <div class="msg-bubble">
-                    Cześć! Jestem Kingusia — Twój doradca oświetlenia LED. 🌟<br /><br />
-                    Powiedz mi dla jakiego pomieszczenia projektujesz oświetlenie — pomogę dobrać taśmę, profil i
-                    zasilacz!
-                </div>
-            </div>
-        </div>
-
-        <div class="quick-prompts">
-            <button class="qp-btn" onclick="sendQuickPrompt('Jaka temperatura barwowa do salonu?')">🛋️ Salon</button>
-            <button class="qp-btn" onclick="sendQuickPrompt('Jaką taśmę wybrać do łazienki? Jaki stopień IP?')">🛁
-                Łazienka</button>
-            <button class="qp-btn" onclick="sendQuickPrompt('Jak obliczyć moc zasilacza do taśmy LED?')">⚡
-                Zasilacz</button>
-            <button class="qp-btn" onclick="sendQuickPrompt('Różnica między COB a SMD LED?')">💡 COB vs SMD</button>
-            <button class="qp-btn" onclick="sendQuickPrompt('Zrób podsumowanie mojego projektu')">📋
-                Podsumowanie</button>
-        </div>
-
-        <div class="chat-input-wrap">
-            <textarea id="chat-input" rows="1" placeholder="Zapytaj o oświetlenie…"></textarea>
-            <button id="chat-send" title="Wyślij (Enter)">➤</button>
-        </div>
-    </aside>
-
-    <div class="modal-overlay" id="modal-overlay">
-        <div class="modal" role="dialog">
-            <div class="modal-title">🏠 Dodaj pomieszczenie</div>
-            <div class="modal-field">
-                <label class="modal-label">Typ pomieszczenia</label>
-                <div class="icon-picker" id="icon-picker"></div>
-            </div>
-            <div class="modal-field">
-                <label class="modal-label" for="modal-room-name">Nazwa pomieszczenia</label>
-                <input class="modal-input" id="modal-room-name" type="text" placeholder="np. Salon, Sypialnia główna…"
-                    maxlength="40" />
-            </div>
-            <div class="modal-actions">
-                <button class="modal-cancel" id="modal-cancel-btn">Anuluj</button>
-                <button class="modal-confirm" id="modal-confirm-btn">✓ Dodaj</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="ollama.js"></script>
-    <script src="app.js"></script>
+    <title>LumiGen LED Studio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        // CORS cmd copy on click
-        document.getElementById('cors-cmd')?.addEventListener('click', function () {
-            navigator.clipboard.writeText(this.textContent).then(() => {
-                this.style.color = '#2ECC71';
-                setTimeout(() => this.style.color = '', 1000);
-            });
-        });
-        // Save custom Ollama URL
-        document.getElementById('ollama-url-save')?.addEventListener('click', function () {
-            const url = document.getElementById('ollama-url-input').value.trim();
-            if (url) {
-                OllamaClient.setBaseUrl(url);
-                updateOllamaStatus();
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              led: {
+                cyan: '#00f0ff',
+                pink: '#ff00aa',
+                warm: '#ffaa00',
+                cold: '#e0f7fa',
+                bg: '#0a0a0f',
+                panel: '#13131f'
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
             }
-        });
+          }
+        }
+      }
     </script>
+    <style>
+      body {
+        background-color: #0a0a0f;
+        color: #e2e8f0;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #13131f; 
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #334155; 
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #475569; 
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.33.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.1/",
+    "react/": "https://esm.sh/react@^19.2.1/",
+    "react": "https://esm.sh/react@^19.2.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
 </body>
-
 </html>
