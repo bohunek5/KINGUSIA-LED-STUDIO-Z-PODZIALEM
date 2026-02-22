@@ -1035,20 +1035,81 @@ input[type="range"]::-webkit-slider-thumb:hover {
     transform: none;
 }
 
-/* Offline banner */
+/* Offline / CORS banner */
 #ollama-offline-banner {
-    background: rgba(231, 76, 60, 0.08);
+    background: rgba(231, 76, 60, 0.06);
     border-bottom: 1px solid rgba(231, 76, 60, 0.2);
-    padding: 8px 14px;
-    font-size: 12px;
-    color: var(--danger);
+    padding: 10px 14px;
     display: none;
-    align-items: center;
+    flex-direction: column;
     gap: 8px;
 }
 
 #ollama-offline-banner.visible {
     display: flex;
+}
+
+.cors-fix-box {
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    padding: 9px 11px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: var(--text-2);
+}
+
+.cors-fix-box strong {
+    color: var(--warning);
+    display: block;
+    margin-bottom: 4px;
+    font-size: 11px;
+}
+
+.cors-fix-box code {
+    display: block;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    padding: 5px 9px;
+    font-family: monospace;
+    font-size: 10px;
+    color: #7EC8E3;
+    cursor: pointer;
+    user-select: all;
+    word-break: break-all;
+    transition: color 0.2s;
+}
+
+.ollama-url-input {
+    flex: 1;
+    min-width: 0;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    color: var(--text-1);
+    font: 11px monospace;
+    padding: 4px 8px;
+    outline: none;
+}
+
+.ollama-url-input:focus {
+    border-color: var(--orange);
+}
+
+.ollama-url-save {
+    background: var(--orange);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font: 11px inherit;
+    padding: 4px 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: var(--transition);
+}
+
+.ollama-url-save:hover {
+    background: var(--orange-light);
 }
 
 /* ══════════════════════════════════════
