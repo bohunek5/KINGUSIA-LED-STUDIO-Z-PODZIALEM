@@ -1,0 +1,187 @@
+[
+    {
+        "id": "strip-2835-cw",
+        "type": "led_strip",
+        "name": "Taśma LED Premium 6500K (zimna biała)",
+        "kelvin": 6500,
+        "kelvinLabel": "Zimna biała",
+        "voltage": 12,
+        "wattsPerMeter": 7.2,
+        "ledsPerMeter": 60,
+        "ip": 20,
+        "lumensPerMeter": 700,
+        "pricePerMeter": 18.90,
+        "color": "#E8F4FF"
+    },
+    {
+        "id": "strip-2835-nw",
+        "type": "led_strip",
+        "name": "Taśma LED Premium 4000K (neutralna biała)",
+        "kelvin": 4000,
+        "kelvinLabel": "Neutralna biała",
+        "voltage": 12,
+        "wattsPerMeter": 7.2,
+        "ledsPerMeter": 60,
+        "ip": 20,
+        "lumensPerMeter": 720,
+        "pricePerMeter": 18.90,
+        "color": "#F5F5E8"
+    },
+    {
+        "id": "strip-2835-ww",
+        "type": "led_strip",
+        "name": "Taśma LED Premium 3000K (ciepła biała)",
+        "kelvin": 3000,
+        "kelvinLabel": "Ciepła biała",
+        "voltage": 12,
+        "wattsPerMeter": 7.2,
+        "ledsPerMeter": 60,
+        "ip": 20,
+        "lumensPerMeter": 680,
+        "pricePerMeter": 18.90,
+        "color": "#FFF3CD"
+    },
+    {
+        "id": "strip-2835-wwip65",
+        "type": "led_strip",
+        "name": "Taśma LED Premium 3000K IP65 (łazienka)",
+        "kelvin": 3000,
+        "kelvinLabel": "Ciepła biała IP65",
+        "voltage": 12,
+        "wattsPerMeter": 7.2,
+        "ledsPerMeter": 60,
+        "ip": 65,
+        "lumensPerMeter": 660,
+        "pricePerMeter": 24.90,
+        "color": "#FFF3CD"
+    },
+    {
+        "id": "strip-high-cob",
+        "type": "led_strip",
+        "name": "Taśma LED COB 4000K (liniowa, bez efektu dot)",
+        "kelvin": 4000,
+        "kelvinLabel": "Neutralna biała COB",
+        "voltage": 24,
+        "wattsPerMeter": 10,
+        "ledsPerMeter": 320,
+        "ip": 20,
+        "lumensPerMeter": 1100,
+        "pricePerMeter": 32.50,
+        "color": "#FFFFFF"
+    },
+    {
+        "id": "strip-rgb",
+        "type": "led_strip",
+        "name": "Taśma LED RGB 12V (kolorowa)",
+        "kelvin": 0,
+        "kelvinLabel": "RGB",
+        "voltage": 12,
+        "wattsPerMeter": 14.4,
+        "ledsPerMeter": 60,
+        "ip": 20,
+        "lumensPerMeter": 400,
+        "pricePerMeter": 22.00,
+        "color": "#FF6B6B"
+    },
+    {
+        "id": "profile-surface-wide",
+        "type": "profile",
+        "name": "Profil aluminiowy nawierzchniowy szeroki ALU-W47",
+        "width": 47,
+        "style": "surface",
+        "pricePerMeter": 28.00,
+        "compatibleIp": [
+            20,
+            44
+        ]
+    },
+    {
+        "id": "profile-surface-slim",
+        "type": "profile",
+        "name": "Profil aluminiowy nawierzchniowy slim ALU-W17",
+        "width": 17,
+        "style": "surface",
+        "pricePerMeter": 16.00,
+        "compatibleIp": [
+            20,
+            44
+        ]
+    },
+    {
+        "id": "profile-recessed",
+        "type": "profile",
+        "name": "Profil aluminiowy wpuszczany ALU-R24",
+        "width": 24,
+        "style": "recessed",
+        "pricePerMeter": 22.00,
+        "compatibleIp": [
+            20,
+            44
+        ]
+    },
+    {
+        "id": "profile-corner",
+        "type": "profile",
+        "name": "Profil aluminiowy narożny 45° ALU-K",
+        "width": 20,
+        "style": "corner",
+        "pricePerMeter": 19.00,
+        "compatibleIp": [
+            20
+        ]
+    },
+    {
+        "id": "profile-wet",
+        "type": "profile",
+        "name": "Profil aluminiowy IP67 do wilgoci ALU-W67",
+        "width": 24,
+        "style": "wet",
+        "pricePerMeter": 35.00,
+        "compatibleIp": [
+            20,
+            44,
+            65,
+            67
+        ]
+    },
+    {
+        "id": "psu-12v-24w",
+        "type": "psu",
+        "name": "Zasilacz LED 12V 24W (desktop)",
+        "voltage": 12,
+        "watts": 24,
+        "price": 39.00
+    },
+    {
+        "id": "psu-12v-60w",
+        "type": "psu",
+        "name": "Zasilacz LED 12V 60W (desktop)",
+        "voltage": 12,
+        "watts": 60,
+        "price": 59.00
+    },
+    {
+        "id": "psu-12v-120w",
+        "type": "psu",
+        "name": "Zasilacz LED 12V 120W (desktop)",
+        "voltage": 12,
+        "watts": 120,
+        "price": 89.00
+    },
+    {
+        "id": "psu-24v-60w",
+        "type": "psu",
+        "name": "Zasilacz LED 24V 60W (desktop)",
+        "voltage": 24,
+        "watts": 60,
+        "price": 69.00
+    },
+    {
+        "id": "psu-24v-120w",
+        "type": "psu",
+        "name": "Zasilacz LED 24V 120W (desktop)",
+        "voltage": 24,
+        "watts": 120,
+        "price": 99.00
+    }
+]
